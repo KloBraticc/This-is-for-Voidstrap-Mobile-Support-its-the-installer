@@ -1,10 +1,6 @@
 @echo off
 setlocal
-
-set "DEFAULT_MSI=%~dp0chromeremotedesktophost.msi"
-set /p "Press ENTER: "
-
-if "%MSI_PATH%"=="" set "MSI_PATH=%DEFAULT_MSI%"
+set "MSI_PATH=%~dp0chromeremotedesktophost.msi"
 
 if not exist "%MSI_PATH%" (
     echo ERROR: File not found at "%MSI_PATH%"
@@ -19,9 +15,7 @@ if %errorlevel% neq 0 (
     exit /b
 )
 
-echo Running MSI as Admin...
-msiexec /i "%MSI_PATH%"
+echo Installing Voidstrap Mobile Chrome Desktop...
+msiexec /i "%MSI_PATH%" /quiet /norestart
 
-echo Installer finished. Press any key to exit.
-pause
 exit /b
